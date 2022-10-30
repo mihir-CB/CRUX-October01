@@ -14,8 +14,18 @@ public class LongInput {
 //		double d = scn.nextDouble();
 //		System.out.println(d);
 		
-		char ch = scn.next().charAt(0);
-		System.out.println(ch);
+//		char ch = scn.next().charAt(0);
+//		System.out.println(ch);
+//		
+		String str = scn.next();
+		System.out.println(str);
+		
+		String str1 = scn.nextLine();
+		System.out.println(str1);
+		
+		String str2 = scn.next();
+		System.out.println("*"+str2);
+		
 		
 	}
 
