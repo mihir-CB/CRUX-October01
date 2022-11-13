@@ -1,3 +1,4 @@
+package Lec05;
 
 public class Le05 {
 
