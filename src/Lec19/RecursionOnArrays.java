@@ -1,4 +1,4 @@
-package Lecture19;
+package Lec19;
 
 public class RecursionOnArrays {
 
