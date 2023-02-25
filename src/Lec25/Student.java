@@ -31,7 +31,7 @@ public class Student {
 	}
 
 	static {
-		System.out.println("first");
+//		System.out.println("first");
 		count = 0;
 	}
 
@@ -39,7 +39,10 @@ public class Student {
 		this.name = name;
 	}
 
-	public void setAge(int age) {
+	public void setAge(int age) throws Exception{
+		if(age<0) {
+			throw new Exception("Bhai paida toh hoja");
+		}
 		this.age = age;
 	}
 

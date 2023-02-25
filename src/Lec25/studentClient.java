@@ -64,19 +64,19 @@ public class studentClient {
 		s2 = temp;
 	}
 
-	public static void swap2(Student s1, Student s2) {
-		String temp = s1.name;
-		s1.name = s2.name;
-		s2.name = temp;
-
-		int tem = s1.age;
-		s1.age = s2.age;
-		s2.age = tem;
-	}
+//	public static void swap2(Student s1, Student s2) {
+//		String temp = s1.name;
+//		s1.name = s2.name;
+//		s2.name = temp;
+//
+//		int tem = s1.age;
+//		s1.age = s2.age;
+//		s2.age = tem;
+//	}
 
 	public static void demo(Student s, String name, int age, String myName, int myAge) {
-		s.name = "";
-		s.age=0;
+//		s.name = "";
+//		s.age=0;
 		
 		name="";
 		age=0;
