@@ -33,7 +33,6 @@ public class QueueClient {
 		queue.display();
 		queue.dequeue();
 		queue.display();
-
 	}
 
 }
