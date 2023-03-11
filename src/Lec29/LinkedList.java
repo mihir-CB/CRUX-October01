@@ -1,5 +1,7 @@
 package Lec29;
 
+import java.util.Stack;
+
 public class LinkedList {
 	private class Node {
 		int data;
@@ -227,5 +229,116 @@ public class LinkedList {
 			fast = fast.next;
 		}
 		return slow.data;
+	}
+
+	/*
+	 * returns a ll after reves params: int k
+	 * 
+	 * returns: list
+	 */
+	public void revK(int k) {
+		Stack<Node> stack = new Stack<>();
+		Node upHead = null;
+		Node last = null;
+		Node ptr = head;
+
+		while (ptr != null) {
+
+			stack.push(ptr);
+			ptr = ptr.next;
+
+			if (stack.size() == k) {
+				while (!stack.isEmpty()) {
+					Node nn = stack.pop();
+					nn.next = null;
+					if (upHead == null) {
+						upHead = nn;
+						last = nn;
+					} else {
+						last.next = nn;
+						last = nn;
+					}
+				}
+			}
+		}
+		if (!stack.isEmpty()) {
+			Node l2 = null;
+			Node l2H = null;
+			while (!stack.isEmpty()) {
+				Node nn = stack.pop();
+				nn.next = null;
+				if (l2 == null) {
+					l2H = nn;
+					l2 = nn;
+				} else {
+					l2.next = nn;
+					l2 = nn;
+				}
+			}
+
+			Node prev = null;
+			Node curr = l2H;
+			while (curr != null) {
+				Node ahead = curr.next;
+				curr.next = prev;
+				prev = curr;
+				curr = ahead;
+			}
+			last.next = prev;
+
+		}
+		this.head = upHead;
+	}
+	/*
+	 * public ListNode reverseKGroup(ListNode head, int k) { if(head==null){ return
+	 * head; } int c=1; ListNode p = head; while(c<k && p!=null){ p=p.next; c++; }
+	 * if(p==null){ // k elements not available return head; } ListNode next =
+	 * p.next; ListNode rr = reverseKGroup(next,k); p.next=null;
+	 * 
+	 * // head -> 1 ListNode uh = rev(head);// 3 head.next=rr; return uh; } private
+	 * ListNode rev(ListNode n){ ListNode prev = null; ListNode curr = n;
+	 * while(curr!=null){ ListNode ahead = curr.next; curr.next = prev; prev=curr;
+	 * curr=ahead; } return prev; }
+	 */
+
+	public boolean isCyclic() {
+		Node slow = head;
+		Node fast = head;
+		while (fast != null && fast.next != null) {
+			if (slow == fast) {
+				return true;
+			}
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return false;
+	}
+
+	public void removeCycle() {
+		if (!isCyclic()) {
+			return;
+		}
+
+		Node slow = head;
+		Node fast = head;
+
+		Node intersection = null;
+
+		while (fast != null && fast.next != null) {
+			if (slow == fast) {
+				intersection = slow;
+				break;
+			}
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		slow = head;
+		fast = intersection;
+		while (slow.next != fast.next) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		fast.next = null;
 	}
 }
