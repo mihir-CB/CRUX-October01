@@ -1,5 +1,8 @@
 package Lec31;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
 	class Node {
 		int data;
@@ -12,6 +15,27 @@ public class BinaryTree {
 	}
 
 	private Node root;
+	
+	BinaryTree(int[] lvl){
+		constructFromLevelOrder(lvl);
+	}
+	
+	int idx=0;
+	BinaryTree(int[] pre, int a){
+		root = constructFromPre(pre);
+	}
+
+	private Node constructFromPre(int[] pre) {
+		if(pre[idx]==-1) {
+			idx++;
+			return null;
+		}
+		Node node = new Node(pre[idx]);
+		idx++;
+		node.left=constructFromPre(pre);
+		node.right=constructFromPre(pre);
+		return node;
+	}
 
 	BinaryTree(int[] pre, int[] in) {
 		root = constructTreeFromPreIn(pre, 0, pre.length - 1, in, 0, in.length - 1);
@@ -178,4 +202,48 @@ public class BinaryTree {
         return flip||noFlip;
     }
     */
+	
+	public void levelOrderTraversal() {
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			Node node = queue.remove();
+			System.out.print(node.data+" ");
+			if(node.left!=null) {
+				queue.add(node.left);
+			}
+			if(node.right!=null) {
+				queue.add(node.right);
+			}
+		}
+	}
+	
+	
+	private void constructFromLevelOrder(int[] lvl) {
+		int idx = 0;
+		root = new Node(lvl[0]);
+		idx++;
+		
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+		
+		while(idx<lvl.length && !queue.isEmpty()) {
+			Node node = queue.remove();
+			if(idx<lvl.length && lvl[idx]!=-1) {
+				Node left = new Node(lvl[idx]);
+				node.left=left;
+				queue.add(left);
+			}
+			idx++;
+			
+			if(idx<lvl.length && lvl[idx]!=-1) {
+				Node right = new Node(lvl[idx]);
+				node.right=right;
+				queue.add(right);
+			}
+			idx++;
+		}
+		
+	}
+	
 }
