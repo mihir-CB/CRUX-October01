@@ -15,11 +15,13 @@ public class GraphClient {
 		graph.addEdge(5, 7, 14);
 		graph.addEdge(6, 7, 3);
 		System.out.println(graph);
-		System.out.println(graph.getWt(5, 6));
-		graph.removeEdge(0, 1);
-		System.out.println(graph);
+//		System.out.println(graph.getWt(5, 6));
+//		graph.removeEdge(0, 1);
+//		System.out.println(graph);
+//		
+//		System.out.println(graph.hasPath(1,7));
 		
-		System.out.println(graph.hasPath(1,8));
+	
 
 	}
 
